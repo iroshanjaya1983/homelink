@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart LED Controller</title>
+    <meta name="description" content="A simple and fast single-page app to control a virtual LED. Fully responsive and optimized for mobile.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Smart Hub</h1>
+            <p>Control your device seamlessly</p>
+        </header>
+
+        <main>
+            <div class="status-panel">
+                <div id="led-indicator" class="led-light"></div>
+                <span id="status-text">System Offline</span>
+            </div>
+
+            <div class="controls">
+                <button id="on-btn" class="btn btn-on">
+                    <span class="icon">⏻</span>
+                    ON
+                </button>
+                <button id="off-btn" class="btn btn-off">
+                    <span class="icon">◯</span>
+                    OFF
+                </button>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Smart Control System</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

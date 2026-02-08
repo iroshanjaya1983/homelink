@@ -1,0 +1,158 @@
+:root {
+    --bg-color: #0f172a;
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --primary-text: #f8fafc;
+    --secondary-text: #94a3b8;
+    --led-off: #1e293b;
+    --led-on: #22c55e;
+    --led-glow: rgba(34, 197, 94, 0.5);
+    --btn-on-bg: #22c55e;
+    --btn-off-bg: #ef4444;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--primary-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(circle at top right, #1e1b4b, #0f172a);
+}
+
+.container {
+    width: 90%;
+    max-width: 400px;
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2.5rem;
+    border-radius: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.025em;
+}
+
+header p {
+    color: var(--secondary-text);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+.status-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.led-light {
+    width: 40px;
+    height: 40px;
+    background-color: var(--led-off);
+    border-radius: 50%;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: var(--transition);
+    position: relative;
+    border: 3px solid rgba(255, 255, 255, 0.05);
+}
+
+.led-light.active {
+    background-color: var(--led-on);
+    box-shadow: 0 0 20px var(--led-glow), 0 0 40px var(--led-glow);
+}
+
+#status-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--secondary-text);
+    transition: var(--transition);
+}
+
+.status-panel:has(.led-light.active) #status-text {
+    color: var(--led-on);
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.btn {
+    border: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn .icon {
+    font-size: 1.25rem;
+}
+
+.btn-on {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    box-shadow: 0 4px 14px 0 rgba(34, 197, 94, 0.39);
+}
+
+.btn-off {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    box-shadow: 0 4px 14px 0 rgba(239, 68, 68, 0.39);
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+}
+
+footer {
+    margin-top: 2rem;
+    font-size: 0.75rem;
+    color: var(--secondary-text);
+}
+
+/* Mobile Responsiveness Extra */
+@media (max-width: 480px) {
+    .container {
+        padding: 2rem 1.5rem;
+    }
+}

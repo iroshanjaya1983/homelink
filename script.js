@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-// ⚠️ මෙතැනට ඔයාගේ Firebase Config එක ඇතුළත් කරන්න (Firebase Console එකෙන් ලබාගත හැක)
+// Firebase Config (ඔයාගේ google-services.json එකෙන් ගත්තු විස්තර)
 const firebaseConfig = {
     apiKey: "AIzaSyDDFajfJdqA9XE2N5mbHhO0NhlfIdZfIdo",
     authDomain: "smarthomelight-5b9c8.firebaseapp.com",
@@ -15,7 +15,9 @@ const firebaseConfig = {
 // Firebase Initialize කිරීම
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-const ledRef = ref(database, 'ledStatus');
+
+// Screenshot එකේ අනුකූලව path එක: Home -> Home -> Light
+const ledRef = ref(database, 'Home/Home/Light');
 
 document.addEventListener('DOMContentLoaded', () => {
     const ledIndicator = document.getElementById('led-indicator');
@@ -24,8 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const offBtn = document.getElementById('off-btn');
 
     // UI එක update කරන function එක
-    const updateUI = (status) => {
-        if (status === 'on') {
+    const updateUI = (value) => {
+        // value එක 1 නම් ON, නැත්නම් OFF (string හෝ number දෙකම වැඩ කරයි)
+        if (value == 1 || value == "1") {
             ledIndicator.classList.add('active');
             statusText.textContent = 'System Online';
         } else {
@@ -37,18 +40,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Firebase එකේ data වෙනස් වෙනකොට Realtime වෙබ් එකේ update වීම
     onValue(ledRef, (snapshot) => {
         const data = snapshot.val();
+        console.log("Current status:", data);
         updateUI(data);
     });
 
-    // On Button එක click කරාම Firebase එකට 'on' ලෙස data යැවීම
+    // On Button එක click කරාම Firebase එකට 1 යැවීම
     onBtn.addEventListener('click', () => {
-        set(ledRef, 'on');
+        set(ledRef, 1);
         if (window.navigator.vibrate) window.navigator.vibrate(50);
     });
 
-    // Off Button එක click කරාම Firebase එකට 'off' ලෙස data යැවීම
+    // Off Button එක click කරාම Firebase එකට 0 යැවීම
     offBtn.addEventListener('click', () => {
-        set(ledRef, 'off');
+        set(ledRef, 0);
         if (window.navigator.vibrate) window.navigator.vibrate(20);
     });
 });

@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const turnOn = () => {
         ledIndicator.classList.add('active');
         statusText.textContent = 'System Online';
-        
+
         // Haptic feedback if available
         if (window.navigator.vibrate) {
             window.navigator.vibrate(50);

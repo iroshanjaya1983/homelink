@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart LED Controller</title>
-    <meta name="description" content="A simple and fast single-page app to control a virtual LED. Fully responsive and optimized for mobile.">
+    <meta name="description"
+        content="A simple and fast single-page app to control a virtual LED. Fully responsive and optimized for mobile.">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -25,11 +28,18 @@
 
             <div class="controls">
                 <button id="on-btn" class="btn btn-on">
-                    <span class="icon">⏻</span>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                        <line x1="12" y1="2" x2="12" y2="12"></line>
+                    </svg>
                     ON
                 </button>
                 <button id="off-btn" class="btn btn-off">
-                    <span class="icon">◯</span>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                    </svg>
                     OFF
                 </button>
             </div>
@@ -41,4 +51,5 @@
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>
